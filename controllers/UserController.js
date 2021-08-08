@@ -52,7 +52,7 @@ export const deactivateUser = async (req, res) => {
 	try {
 		const user = await User.findByIdAndUpdate(
 			id,
-			{ status: true },
+			{ status: false },
 			{ new: true }
 		)
 		return successResponse(res, user)
