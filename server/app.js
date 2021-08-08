@@ -2,11 +2,8 @@ import express from 'express'
 import cors from 'cors'
 import morgan from 'morgan'
 import dotenv from 'dotenv'
-<<<<<<< HEAD
 import { dbConnection } from '../config/db'
-=======
 import Routes from '../routes'
->>>>>>> UserModule
 dotenv.config()
 
 export default class Server {
@@ -17,14 +14,9 @@ export default class Server {
 		this.middlewares()
 		this.routes()
 	}
-<<<<<<< HEAD
 	async connection() {
 		await dbConnection()
 	}
-	middlewares() {}
-	routes() {}
-=======
-	connection() {}
 	middlewares() {
 		this.app.use(express.json())
 		this.app.use(cors())
@@ -33,7 +25,6 @@ export default class Server {
 	routes() {
 		this.app.use('/api', Routes)
 	}
->>>>>>> UserModule
 	listen() {
 		this.app.listen(this.port, (err) => {
 			if (err) console.error(`Error in the server run: ${err}`)
