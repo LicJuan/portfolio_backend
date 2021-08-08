@@ -39,7 +39,7 @@ export const updateUser = async (req, res) => {
 	const { id } = req.params
 	const { password, ...body } = req.body
 	try {
-		if (password) body.password = await hashPassword(password)
+        if (password) body.password = await passwordEncrypt(password)
 		const user = await User.findByIdAndUpdate(id, body)
 		return successResponse(res, user)
 	} catch (err) {
