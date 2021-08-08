@@ -2,6 +2,7 @@ import express from 'express'
 import cors from 'cors'
 import morgan from 'morgan'
 import dotenv from 'dotenv'
+import { dbConnection } from '../config/db'
 dotenv.config()
 
 export default class Server {
@@ -12,7 +13,9 @@ export default class Server {
 		this.middlewares()
 		this.routes()
 	}
-	connection() {}
+	async connection() {
+		await dbConnection()
+	}
 	middlewares() {}
 	routes() {}
 	listen() {
