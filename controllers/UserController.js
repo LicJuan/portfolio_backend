@@ -47,6 +47,26 @@ export const updateUser = async (req, res) => {
 	}
 }
 
+export const deactivateUser = async (req, res) => {
+	const { id } = req.params
+	try {
+		const user = await findByIdAndUpdate(id, { status: true })
+		return successResponse(res, user)
+	} catch (err) {
+		return errorResponse(res, err)
+	}
+}
+
+export const activateUser = async (req, res) => {
+	const { id } = req.params
+	try {
+		const user = await findByIdAndUpdate(id, { status: true })
+		return successResponse(res, user)
+	} catch (err) {
+		return errorResponse(res, err)
+	}
+}
+
 export const deleteUser = async (req, res) => {
 	const { id } = req.params
 	try {
