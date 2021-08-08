@@ -39,8 +39,8 @@ export const updateUser = async (req, res) => {
 	const { id } = req.params
 	const { password, ...body } = req.body
 	try {
-        if (password) body.password = await passwordEncrypt(password)
-		const user = await User.findByIdAndUpdate(id, body)
+		if (password) body.password = await passwordEncrypt(password)
+		const user = await User.findByIdAndUpdate(id, body, { new: true })
 		return successResponse(res, user)
 	} catch (err) {
 		return errorResponse(res, err)
@@ -50,7 +50,11 @@ export const updateUser = async (req, res) => {
 export const deactivateUser = async (req, res) => {
 	const { id } = req.params
 	try {
-		const user = await User.findByIdAndUpdate(id, { status: true })
+		const user = await User.findByIdAndUpdate(
+			id,
+			{ status: true },
+			{ new: true }
+		)
 		return successResponse(res, user)
 	} catch (err) {
 		return errorResponse(res, err)
@@ -60,7 +64,11 @@ export const deactivateUser = async (req, res) => {
 export const activateUser = async (req, res) => {
 	const { id } = req.params
 	try {
-		const user = await User.findByIdAndUpdate(id, { status: true })
+		const user = await User.findByIdAndUpdate(
+			id,
+			{ status: true },
+			{ new: true }
+		)
 		return successResponse(res, user)
 	} catch (err) {
 		return errorResponse(res, err)
