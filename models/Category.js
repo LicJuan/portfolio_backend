@@ -10,13 +10,18 @@ const CategorySchema = new Schema(
 		},
 		slug: {
 			type: String
+		},
+		status: {
+			type: Boolean,
+			default: true
 		}
 	},
 	{ timestamps: true }
 )
 
-CategorySchema.pre('save', function (cat) {
-	cat.slug = slugify(cat.name)
+CategorySchema.pre('save', function (next) {
+	this.slug = slugify(this.name, { lower: true })
+	next()
 })
 
 export default model('Category', CategorySchema)
