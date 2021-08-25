@@ -7,7 +7,7 @@ export const allUsers = async (req, res) => {
 		const users = await User.find()
 		return successResponse(res, users)
 	} catch (err) {
-		return errorResponse(res, err)
+		return errorResponse(res, err.message)
 	}
 }
 
@@ -19,7 +19,7 @@ export const addUser = async (req, res) => {
 		await user.save()
 		return successResponse(res, user)
 	} catch (err) {
-		return errorResponse(res, err)
+		return errorResponse(res, err.message)
 	}
 }
 
@@ -31,7 +31,7 @@ export const singleUser = async (req, res) => {
 			return errorResponse(res, { message: 'Usuario no encontrado' }, 404)
 		return successResponse(res, user)
 	} catch (err) {
-		return errorResponse(res, err)
+		return errorResponse(res, err.message)
 	}
 }
 
@@ -43,7 +43,7 @@ export const updateUser = async (req, res) => {
 		const user = await User.findByIdAndUpdate(id, body, { new: true })
 		return successResponse(res, user)
 	} catch (err) {
-		return errorResponse(res, err)
+		return errorResponse(res, err.message)
 	}
 }
 
@@ -57,7 +57,7 @@ export const deactivateUser = async (req, res) => {
 		)
 		return successResponse(res, user)
 	} catch (err) {
-		return errorResponse(res, err)
+		return errorResponse(res, err.message)
 	}
 }
 
@@ -71,7 +71,7 @@ export const activateUser = async (req, res) => {
 		)
 		return successResponse(res, user)
 	} catch (err) {
-		return errorResponse(res, err)
+		return errorResponse(res, err.message)
 	}
 }
 
@@ -81,6 +81,6 @@ export const deleteUser = async (req, res) => {
 		await User.findByIdAndDelete(id)
 		return successResponse(res, 'El usuario ha sido eliminado')
 	} catch (err) {
-		return errorResponse(res, err)
+		return errorResponse(res, err.message)
 	}
 }
